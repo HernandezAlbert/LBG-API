@@ -11,6 +11,7 @@ pipeline {
             steps {
                 //
                sh 'npm test'
+                sh 'env'
             }
         }
         stage('build docker') {
