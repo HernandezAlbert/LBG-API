@@ -1,0 +1,24 @@
+# this is a dockerignore file
+# comments can be made with conventional '#'
+
+# ignore a sensitive file:
+secrets/passwords
+
+# ignore files
+.gitignore
+.dockerignore
+app.test.js
+
+# ignore directory
+/documentation
+/kubernetes
+
+# ignore all markdown files:
+*.md
+
+# ignore any text files in a sub directory:
+*/*.txt
+
+# all markdown files have been ignored,
+# but make an exception for the README.md:
+
