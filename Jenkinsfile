@@ -10,14 +10,13 @@ pipeline {
         stage('run test') {
             steps {
                 //
-               sh 'npm test'
-                sh 'env'
+               sh 'npm test'            
             }
         }
         stage('build docker') {
             steps {
                 //
-                sh 'docker build -t lbg_app:$(BUILD_ID) .'
+                sh 'docker build -t lbg_app:${BUILD_ID} .'
             }
         }
     }
