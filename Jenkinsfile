@@ -16,7 +16,7 @@ pipeline {
         stage('build docker') {
             steps {
                 //
-                sh 'docker build -t lbg_app:$(env.BUILD_D) .'
+                sh 'docker build -t lbg_app:$(env.BUILD_ID) .'
             }
         }
     }
