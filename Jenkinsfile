@@ -4,7 +4,7 @@ pipeline {
         stage('Install dependencies ') {
             steps {
                sh 'npm install'
-              
+                
             }
         }
         stage('run test') {
