@@ -17,7 +17,7 @@ pipeline {
             steps {
                 // 
                 sh '''kubectl apply -f ./kubernetes/nginx.yaml
-                kubectl apply -f ./kubernetes/api-deployment.yaml
+                kubectl apply -f ./kubernetes/api-deployment.yml
                 '''
             }
         }
