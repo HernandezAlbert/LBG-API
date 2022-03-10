@@ -1,22 +1,30 @@
 pipeline {
     agent any
     stages {
-        stage('Install dependencies ') {
+        stage('Build Image') {
             steps {
-               sh 'npm install'
+               sh 'docker build -t alberthernandez2/api:$BUILD_NUMBER .'
                 
             }
         }
-        stage('run test') {
+        stage('push to docker hub') {
             steps {
                 //
-               sh 'npm test'
+               sh 'docker push alberthernandez2/api:$BUILD_NUMBER'
             }
         }
-        stage('build docker') {
+        stage('Reapply ') {
             steps {
                 //
-                sh 'docker build -t lbg_app:$(env.BUILD_ID) .'
+                sh '''kubectl apply -f ./kubernetes/nginx.yaml
+                kubectl apply -f ./kubernetes/api-deployment.yaml
+                '''
+            }
+        }
+        stage('Cleanup ') {
+            steps {
+                // 
+                sh 'docker system prune'
             }
         }
     }

@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lbgapp
+spec:
+  type: LoadBalancer
+  selector:
+    app: lbgapp
+  ports:
+  - protocol: TCP
+    port: 9000
+    targetPort: 9000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lbgapp
+  labels:
+    app: lbgapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lbgapp
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: lbgapp
+    spec:
+      containers:
+      - name: lbgapp
+        image: lbg_app:latest # this image will show a blue background instead of red
+        ports:
+        - containerPort: 9000
