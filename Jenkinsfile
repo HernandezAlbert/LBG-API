@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-               sh 'docker build -t gcr.io/lbg-210222/api-albert:$BUILD_NUMBER .'
+               sh 'docker build -t gcr.io/lbg-210222/api-albert:$BUILD_NUMBER .' -t gcr.io/lbg-210222/api-albert:latest .'
                 
             }
         }
@@ -11,6 +11,7 @@ pipeline {
             steps {
                 //
                     sh 'docker push gcr.io/lbg-210222/api-albert:$BUILD_NUMBER'       
+                    sh 'docker push gcr.io/lbg-210222/api-albert:latest'
             }
         }
         stage('Reapply ') {
