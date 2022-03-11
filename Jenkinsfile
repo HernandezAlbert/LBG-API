@@ -11,7 +11,7 @@ pipeline {
             steps {
                 //
                     sh 'docker tag api:$BUILD_NUMBER gcr.io/lbg-210222/api-albert:$BUILD_NUMBER'
-                    sh 'docker push gcr.io/lbg-210222/api-albert:$BUILD_NUMBER'   
+                    sh 'docker push gcr.io/lbg-210222/api-albert:$BUILD_NUMBER'    
             }
         }
         stage('Reapply ') {
