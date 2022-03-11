@@ -7,10 +7,11 @@ pipeline {
                 
             }
         }
-        stage('push to docker hub') {
+        stage('push to GVR') {
             steps {
                 //
-               sh 'docker push alberthernandez2/api:$BUILD_NUMBER'
+                    sh 'docker tag api-albert-$BUILD_NUMBER gcr.io/lbg-210222/api:$BUILD_NUMBER'
+                    sh 'docker push gcr.io/lbg-210222/api:$BUILD_NUMBER'
             }
         }
         stage('Reapply ') {
