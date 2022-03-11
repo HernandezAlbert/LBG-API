@@ -3,14 +3,14 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-               sh 'docker build -t alberthernandez2/api:$BUILD_NUMBER .'
+               sh 'docker build -t api:$BUILD_NUMBER .'
                 
             }
         }
         stage('push to GVR') {
             steps {
                 //
-                    sh 'docker tag api-albert-$BUILD_NUMBER gcr.io/lbg-210222/api:$BUILD_NUMBER'
+                    sh 'docker tag api:$BUILD_NUMBER gcr.io/lbg-210222/api-albert:$BUILD_NUMBER'
                     sh 'docker push gcr.io/lbg-210222/api:$BUILD_NUMBER'
             }
         }
