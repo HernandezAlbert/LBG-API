@@ -1,6 +1,10 @@
 pipeline {
     agent any
     stages {
+        stage('remove prev image') {
+            steps {
+              sh 'docker rmi images gcr.io/lbg-210222/api-albert:$(($BUILD_NUMBER-1))'
+            }
         stage('Build Image') {
             steps {
                sh 'docker build -t gcr.io/lbg-210222/api-albert:$BUILD_NUMBER  -t gcr.io/lbg-210222/api-albert:latest .'
