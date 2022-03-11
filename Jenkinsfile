@@ -4,10 +4,11 @@ pipeline {
         stage('remove prev image') {
             steps {
              sh 'echo current build is $BUILD_NUMBER'
-             sh 'echo prev build is $BUILD_NUMBER'
+             sh 'echo prev build is $(($BUILD_NUMBER-1))'
              sh '''if [ docker images gcr.io/lbg-210222/api-albert:$(($BUILD_NUMBER-1)) ] 
                    then              
                       docker rmi images gcr.io/lbg-210222/api-albert:$(($BUILD_NUMBER-1))
+                   fi
                 '''
             }
         }
